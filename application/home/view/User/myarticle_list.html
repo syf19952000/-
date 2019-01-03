@@ -1,0 +1,171 @@
+{include file="./home/else3/html/header_edit.html" /}
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+<section id="page-sidebar" class="pull-left span8">
+
+    <div class="sign-up-form">
+                <h3 class="tittle">我的发布 <i class="glyphicon glyphicon-file"></i></h3>
+                <div class="sign-up">
+                
+                <!-- 第二种 搜索样式 -->
+                    <input type="text" id="search" class="textbox textbox_225" placeholder="输入关键词查询..."/>
+                    <input type="submit" id="searchbutton" value="查询" class="group_btn"/>
+
+         
+
+
+
+           {volist name="data" id="v"}
+            
+
+              <div class="box">
+                  <a href="/home/article/detail.html?art_id={$v['art_id']}"><p><span class="zhuse">【{$v['art_id']}】</span>
+                  {$v['art_title']}</a>
+                  <span code="" class="pull-right glyphicon glyphicon-remove-circle"></span></p>
+                  <p class="bottom_xu">
+                      
+                      创建于
+                      {$v['create_time']}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/home/article/detail.html?art_id={$v['art_id']}">查看</a>
+                        <a href="/home/article/edit.html?art_id={$v['art_id']}">修改</a>
+                        <!-- <a href="">删除</a> -->
+                        <a href="javascript:;" delete_id="{$v['art_id']}" id="delete">删除</a>
+  
+                  </p>
+
+          <!--         <div class="box_center">
+                      <img src="" alt="" class="box_ewm">
+                      <div class="ewm_right">
+                          <p class="operation"><a href="ewm-edit?id="><span class="glyphicon glyphicon-pencil"></span></a> <span class="glyphicon glyphicon-print"></span></p>
+                      </div>
+                  </div> -->
+              </div>
+
+         {/volist}
+
+
+        <div class="pagination pagination-centered">
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        <li class="page-item">
+                          <a class="page-link" href="/home/user/myarticlelist?art_id={$art_id}&page={$page-1}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only"></span>
+                          </a>
+                        </li> 
+
+                            {if $page == 0}
+                            <li class="page-item"><a class="page-link" href="/home/user/myarticlelist?art_id={$art_id}&page={$page+1}">下一页</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/user/myarticlelist?art_id={$art_id}&page={$pagecount}">尾页</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="/home/user/myarticlelist?art_id={$art_id}&page={$page-1}">上一页</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/user/myarticlelist?art_id={$art_id}&page={$page+1}">下一页</a></li>
+                            <li class="page-item"><a class="page-link" href="/home/user/myarticlelist?art_id={$art_id}&page={$pagecount}">尾页</a></li>
+                            {/if}
+
+                        <li class="page-item">
+                          <a class="page-link" href="/home/user/myarticlelist?art_id={art_id}&page={$page+1}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only"></span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                </div>
+        
+
+
+
+
+
+</section>
+{include file="./home/else3/html/aside_myfabu.html" /} 
+ 
+        </div>
+    </div>    
+</section>
+
+{include file="./home/else3/html/footer.html" /}  
+
+
+
+<script type="text/javascript">
+
+$("#delete").click(function(){
+    var id = $(this).attr('delete_id');
+    // alert(id);
+    $.ajax({
+        type:'POST',
+        url:"/home/article/delete_fabu.html",
+        data:{
+            "id": id,        // 传过去文章表的id
+        },
+        dataType:"json",
+        success:function(data){    
+            // alert(data);
+            var res = JSON.parse(data);     // json 字符串转化为对象
+            if (res.code == '3')            // 收藏成功，变成红色
+            {    
+                console.log(res.code);
+            }
+            if (res.code == '4')           
+            {
+                console.log(res.code);         
+            }
+            location.reload(true); 
+        },
+        error:function(data){
+            console.log(data);
+            alert(222);
+        } 
+    });          
+})
+
+</script>
+
+
+<script type="text/javascript">
+
+
+
+$("#searchbutton").click(function()
+{ 
+    var name = document.getElementById('search').value; 
+    // alert(name); 
+    // console.log(name);
+    var art_id = window.location.href;
+    $.ajax({ 
+        url:'/home/user/ajaxsearch.html', 
+        type:'POST', 
+        data:{ "name": name, 
+               "art_id":art_id,
+            }, 
+        dataType:'json', 
+        success:function(data)
+        { 
+          // alert(111);
+            var data2 = JSON.parse(data); 
+            console.log(data2);
+            var item = ""; 
+            $(".span8").empty();    //清空 ,原先的内容
+            
+            for(var i = 0 ; i < data2.shuju.length; i++) 
+            { 
+                // 只要用到数据的时候+""+就可以
+                               
+                item += "<a href='/home/article/detail.html?art_id="+data2.shuju[i].art_id+"'><p><span class='zhuse'>【"+data2.shuju[i].art_id+"】</span>"+data2.shuju[i].art_title+"</a><span code='' class='pull-right glyphicon glyphicon-remove-circle'></span></p><p class='bottom_xu'>创建于"+data2.shuju[i].create_time+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='/home/article/detail.html?art_id="+data2.shuju[i].art_id+"'>查看</a><a href='/home/article/edit.html?art_id="+data2.shuju[i].art_id+"'>修改</a><a href='javascript:;' delete_id="+data2.shuju[i].art_id+" id='delete'>删除</a></p>";
+            }
+            $(".span8").append(item); // 显示到里面 
+        },
+        error:function(data)
+        { 
+            // alert(222); 
+            console.log(data); 
+        } 
+    }) 
+})
+</script>

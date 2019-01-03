@@ -1,0 +1,47 @@
+{include file="./home/else3/html/header.html" /}
+	
+<link href="./home/else3/css/fabu/home.css" type="text/css" rel="stylesheet" />
+<!-- <link href="./home/else3/css/fabu/base.css" type="text/css" rel="stylesheet" /> -->
+
+<section class="aui-content">
+            <div style="height:20px;"></div>
+            <div class="aui-content-up">
+
+                <form name="contact" method="post" action="home/topic/insert.html"  enctype="multipart/form-data" id="af-form" />
+                    <div class="aui-content-up-form">
+                        <h2>发表 话题</h2>
+                    </div>
+
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            话题 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <input type="text" class="aui-form-control-two" name="title" id="title" onBlur="checkna()" value="" placeholder="请输入标题">
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            内容 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <textarea name="content" id="content" cols="30" class="aui-form-control"></textarea>
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                 <div class="aui-btn-default">
+                    <input type="submit" id="button" class="aui-btn aui-btn-account" value="发布" />
+                    <!-- <input type="submit" id="button" class="btn btn-welcome btn-large" value="发布" /> -->  
+                </div>
+            </form>
+            </div>
+</section>
+
+
+{include file="./home/else3/html/footer.html" /}   
+
+

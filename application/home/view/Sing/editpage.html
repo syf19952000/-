@@ -1,0 +1,107 @@
+{include file="./home/else3/html/header_edit.html" /}
+	
+<link href="/home/else3/css/fabu/home.css" type="text/css" rel="stylesheet" />
+<link href="/home/else3/css/layui.css" type="text/css" rel="stylesheet" />
+
+<section class="aui-content">
+    <div style="height:20px;"></div>
+    <div class="aui-content-up">
+
+            <form name="contact" method="post" action="../sing/editpage.html"  enctype="multipart/form-data" class="af-form" id="af-form" />
+            
+            <div class="aui-content-up-form">
+                <h2>修改 歌曲</h2>
+            </div>
+               
+            <input style="display:none" type="text" name="art_id"  size="30" value="{$data}" class="text-input span4" />
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    歌名 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" class="aui-form-control-two" name="title" id="title" onBlur="checkna()" value="{$data2.art_title}" placeholder="请输入标题">
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+
+           
+
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    音频 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                <!-- 这应该限制一下传递的类型 ，不能是图片-->
+                    <input  name="music" id="video" size="30"  type="file"  />
+                    <!-- <audio id="audio" controls autoplay="" style="display: none; "></audio> -->
+                </div>
+            </div>
+
+
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    来源 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" name="laiyuan" id="title" size="30" value="{$data2.art_yuan}" class="text-input span4" />
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    歌词内容 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <textarea name="content" id="content" cols="30" class="aui-form-control">{$data2.art_content}</textarea>
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    注释 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <textarea name="zhushi" id="content" cols="30" class="aui-form-control">{$data2.art_zhu}</textarea>
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+
+            
+        
+         <div class="aui-btn-default">
+            <input type="submit" id="button" class="aui-btn aui-btn-account" value="修改" />    
+        </div>
+    </form>
+    </div>
+</section>
+
+
+{include file="./home/else3/html/footer.html" /}   
+
+
+<script type="text/javascript">
+
+var fileInput = document.querySelector('#video');
+
+fileInput.onchange = function () {
+    // alert(111);
+    var file = this.files[0];
+    // if (!/audio\/\w+/.test(file.type))   // video 和 audio 的可以上传
+    if (/image\/\w+/.test(file.type))   // video 和 audio 的可以上传
+    {
+        alert("只能选择音频和视频文件")
+        // alert(file.type);
+        return false;
+    }
+}
+
+</script>
+
+
+
+

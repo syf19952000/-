@@ -1,0 +1,116 @@
+{include file="./home/else3/html/header.html" /}
+<link href="./home/else3/css/fabu/home.css" type="text/css" rel="stylesheet" />
+
+
+<section class="aui-content">
+    <div style="height:20px;"></div>
+    <div class="aui-content-up">
+
+        <form name="contact" method="post" action="home_reg.html"  enctype="multipart/form-data"  id="af-form" />
+            <div class="aui-content-up-form">
+                <h2>注 册</h2>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    用户名 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" name="username" id="name" size="30"  placeholder="请输入用户名" onBlur="checkna()" class="text-input span4" />
+                    <span class="tips" id="username"></span>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    密码 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" name="password" id="Password" size="30" onBlur="checkpsd1()"  class="text-input span4" />
+                    <!-- <span class="tips" id="divname"></span> -->
+                    <span class="tips" id="phone"></span>
+
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    确认密码 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" name="password2" id="Password2" size="30" value="" onBlur="checkpsd()" class="text-input span4" />
+                    <span class="tips" id="pass"></span>
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    邮箱 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" name="email" id="email" size="30" value="" class="text-input span4" />
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+     
+         <div class="aui-btn-default">
+            <input type="submit" id="button" class="aui-btn aui-btn-account" value="注册" />
+        </div>
+    </form>
+    </div>
+</section>
+
+
+
+{include file="./home/else3/html/footer.html" /}  
+	
+<script type="text/javascript">
+
+//验证用户名
+function checkna(){
+   
+    na=contact.username.value;
+    // alert(na.length);
+    // 这用户名的长度 不对时，也没有 提醒 ，果然是因为，我复制的时候，divname 有好几个
+    if( na.length <1 || na.length >6)
+    {
+        username.innerHTML='<font class="tips_false">长度是1~6个字符</font>';
+         // alert(11);
+    }else{
+        username.innerHTML='<font class="tips_true">输入正确</font>';
+         // alert(22);
+    }
+
+
+
+}
+
+//验证密码
+function checkpsd1(){
+
+    na=contact.password.value;
+    if( na.length <6 || na.length >8)
+    {
+        phone.innerHTML='<font class="tips_false">必须是6~8位的数字</font>';
+    }else{
+        phone.innerHTML='<font class="tips_true">输入正确</font>';
+    }
+}
+
+// 前台验证两次密码不一致
+function checkpsd()
+{
+    pass1=contact.password.value;
+    pass2=contact.password2.value;
+    // alert(pass1);
+    // alert(pass2);
+
+    if( pass1 != pass2)
+    {
+        pass.innerHTML='<font class="tips_false">两次密码不一致</font>';
+    }else{
+        pass.innerHTML='<font class="tips_true">输入正确</font>';        
+    }
+
+}
+
+</script>

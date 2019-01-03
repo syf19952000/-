@@ -1,0 +1,56 @@
+{include file="./home/else3/html/header_edit.html" /}
+
+
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+ 
+            <!-- 遍历这个div -->
+            {volist name="data" id="v"}
+                <article class="blog-post">
+                    <div class="row">
+                        <div class="span8">
+                            <h3 class="post-title"><a href="home_articleonly?id={$v.id}">{$v.art_title}</a></h3>
+                            <ul class="post-meta">
+                                <li><i class="icon-user"></i> <a href="#">{$v['art_author']}</a></li>
+                                <li><i class="icon-dashboard"></i> <a href="#">{$v['art_chao']}</a></li>
+                                <li><i class="icon-calendar"></i> <a href="#">{$v.create_time}</a></li>
+                            </ul>
+                            <div class="post-media">
+                            </div>
+                            <div class="post-content">
+                            <!-- 到时候在这把句子分格式 -->
+                                <p>
+                                    {$v['art_content']}
+                                </p>
+                                <!-- <p>
+                                    {$v['art_content']}
+                                </p> -->
+                                <p><a href="home_articleonly?id={$v.id}" class="btn btn-large btn-welcome"><i class="icon-chevron-right"></i>详细了解</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <hr />
+                {/volist}
+
+                <!-- 分页 -->
+                <div class="pagination pagination-centered">{$data->render()}</div>
+
+
+
+
+            </section>
+
+    <!-- 在这引进右边栏 -->
+    {include file="./home/else3/html/aside222.html" /}
+
+        </div>
+    </div>
+</section>
+
+{include file="./home/else3/html/footer.html" /}

@@ -1,0 +1,137 @@
+
+<!-- 参考网址  https://blog.csdn.net/sinat_35861727/article/details/72783988 -->
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+    <title>小尤支付测试</title>
+    <!-- 引入微信内置浏览器 的js -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
+    <script type="text/javascript">
+
+
+    // document.addEventListener 监听事件的用法
+ //    document.addEventListener("事件名称", 函数, false);
+	// function 某函数(event){
+ //    	//  方法执行
+	// }
+
+
+
+	//调用微信JS api 支付
+	function jsApiCall(event)
+	{
+		// 现在没走过来
+		alert('调用了支付方法');
+
+		var data= '0.1';  // 这这个data是支付的数字还是数组
+		// alert(data);
+		WeixinJSBridge.invoke(
+			// alert(111);
+			'getBrandWCPayRequest', data, 
+			function(res){
+				alert(res);
+				WeixinJSBridge.log(res.err_msg);
+				//alert('err_code:'+res.err_code+'err_desc:'+res.err_desc+'err_msg:'+res.err_msg);
+				//alert(res.err_code+res.err_desc+res.err_msg);
+				//alert(res);
+			    if(res.err_msg == "get_brand_wcpay_request:ok"){  
+				    alert("支付成功!");
+					window.location.href="http://m.blog.csdn.net/article/details?id=72765676";
+			    }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+				    alert("用户取消支付!");  
+			    }else{  
+				    alert("支付失败!");  
+			    }  
+			}
+		);
+		
+	}
+ 
+ 	// 支付按钮调用的方法 ，调用上面的 jsApiCall 方法
+ 	// document.addEventListener  创建监听，给同一个按钮添加多个事件
+	function callpay()
+	{
+		// alert(111);
+		// alert(typeof WeixinJSBridge);
+		if (typeof WeixinJSBridge == "undefined"){
+		    if( document.addEventListener ){
+		        document.addEventListener('WeixinJSBridgeReady', jsApiCall(), false);
+		        alert('走到这了');
+		    }else if (document.attachEvent){
+		        document.attachEvent('WeixinJSBridgeReady', jsApiCall()); 
+		        document.attachEvent('onWeixinJSBridgeReady', jsApiCall());
+		        alert('走的这');
+
+		    }
+		}else{
+		    jsApiCall();
+		}
+	}
+	</script>
+	
+</head>
+<body>
+    <br/>
+    <font color="#9ACD32"><b>该笔订单支付金额为<span style="color:#f00;font-size:50px">1分</span>钱</b></font><br/><br/>
+	<font color="#9ACD32"><b><span style="color:#f00;font-size:50px;margin-left:40%;">1分</span>钱也是爱</b></font><br/><br/>
+	<div align="center">
+		<button style="width:210px; height:50px; border-radius: 15px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" type="button" onclick="callpay()" >果断买买买^_^</button>
+	</div>
+</body>
+</html>
+
+
+<!-- 参考的第二个网址中的方法   https://blog.csdn.net/kolinhu/article/details/81061722 -->
+<script type="text/javascript">
+
+// 前端发起微信支付页面，这里采用的是 ajax请求后台 paySign 发起支付
+	// $('#claim').click(function(){
+	// 	code =  $(this).data('code');
+	// 	$.ajax({
+	// 		'url':"{:url('coupon/payment')}",
+	// 		'data'::{code},
+	// 		'type':'post',
+	// 		'dataType':'json',
+	// 		success:function(res){
+	// 			// res 为返回的正确的 paysign
+	// 			callpay(res);
+	// 		}
+	// 	})
+	// })
+
+ //    // 调用 微信 js api 支付
+ //    function jsApiCall(paySign)
+ //    {
+ //    	WeixinJSBridge.invoke(
+ //    		'getBrandWCPayRequest',
+ //    		paySign,
+ //    		function(res){
+ //    			WeixinJSBridge.log(res.err_msg);
+ //    			url_code = res.err_msg.split(':');
+ //    			code = $('#claim').data('code');
+ //    			if(url_code[1] == 'ok'){
+ //    				// 支付成功
+ //    			}
+ //    		}
+ //    		);
+ //    }
+
+ //    function callpay(paySign)
+ //    {
+ //    	if(typeof WeixinJSBridge == "undefined"){
+ //    		if( document.addEventListener){
+ //    			document.addEventListener('WeixinJSBridgeReady',jsApiCall,false)
+ //    		}else if(document.attachEvent){
+ //    			document.attachEvent('WeixinJSBridgeReady',jsApiCall);
+ //    			document.attachEvent('onWeixinJSBridgeReady',jsApiCall);
+
+ //    		}
+ //    	}else{
+ //    		jsApiCall(paySign);
+ //    	}
+ //    }
+
+
+</script>

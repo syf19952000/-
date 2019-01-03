@@ -1,0 +1,25 @@
+{include file="./admin/html/header.html" /}
+
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">话题列表</h2>
+       <a href="product_detail.html" class="fr top_rt_btn add_icon">添加文章</a>
+      </div>
+
+  <form method="POST" action="admin/topic/edit.html" enctype="multipart/form-data">
+    <div class="box" style="padding:20px 25px;">
+        <input type="hidden" name="art_id" value="{$id}">
+        <p>文章标题:</p>
+        <input type="text" name="art_title" class="huoma_title"  value="{$data['art_title']}" placeholder="请输入标题">
+        <p>文章内容:</p>
+        <textarea name="art_content"  class="huoma_neirong" placeholder="请填写您要记录的故事">{$data['art_content']}</textarea>
+    </div>
+    <!-- <a href="ewm_information.html" class="next">下一步</a> -->
+    <button class="next">修改</button>
+    </form>
+
+ </div>
+</section>
+</body>
+</html>

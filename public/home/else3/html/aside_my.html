@@ -1,0 +1,106 @@
+        <!--sidebar-->
+            <aside id="sidebar" class="pull-right span4">
+                
+                <section>
+                    <h3 class="widget-title">关于我</h3>
+                    <!-- 头像样式 呈现椭圆形 class="my_photo" -->
+                    <!-- <div class="active item"><img src="{$my_list['touxiang']}" alt="photo" class="my_photo"   /></div> -->
+                    <div class="imgtest">
+                        <figure>  
+                            <div><img src="{$my_list['touxiang']}" /></div>  
+                        </figure>
+                    </div>  
+                    <ul class="icons ul-list">
+                        <li><a href="#">{$my_list['username']}</a></li>
+                        <li><a href="#">{$my_list['mobile']}</a></li>
+                        <li><a href="#">{$my_list['email']}</a></li>
+                        <li><a href="#">{$my_list['sex']}</a></li>    
+                    </ul>
+                   
+                </section>
+                <section class="popular-posts">
+                    <h3 class="widget-title">资料管理</h3>
+                    <div class="media">
+                      <!--   <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar2.jpg" alt="" />
+                            <span class="frame-overlay"></span>
+                        </a> -->
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="home_gaixiang.html">上传头像</a></h4>
+                            <!-- <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p> -->
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="home_mygai.html">修改资料</a></h4>
+                            <!-- <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p> -->
+                        </div>
+                    </div>
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <!-- <img class="media-object" src="example/sidebar4.jpg" alt="" /> -->
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="home_gaipass.html">修改密码</a></h4>
+                            <!-- <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p> -->
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="home_myarticle.html">我的发布</a></h4>
+                            <!-- <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p> -->
+                        </div>
+                    </div>
+                     <div class="media">
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="home_mycollection.html">我的收藏</a></h4>
+                            <!-- <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p> -->
+                        </div>
+                    </div>
+
+                </section>
+                
+       
+
+                
+         
+
+            </aside>
+
+<!-- 头像样式 -->
+<style> 
+
+    .my_photo{
+        border-top-left-radius: 80%; 
+        border-top-right-radius: 80%;
+        border-bottom-left-radius: 80%;
+        border-bottom-right-radius: 80% ;
+        width:30%;
+     }
+
+
+     .imgtest{
+        margin:10px 5px;
+        overflow:hidden;
+    }
+    .list_ul figcaption p{
+        font-size:12px;
+        color:#aaa;
+    }
+    .imgtest figure div{
+        display:inline-block;
+        margin:5px auto;
+        width:100px;
+        height:100px;
+        border-radius:100px;
+        border:2px solid #fff;
+        overflow:hidden;
+        -webkit-box-shadow:0 0 3px #ccc;
+        box-shadow:0 0 3px #ccc;
+    }
+    .imgtest img{
+        width:100%;
+        min-height:100%; text-align:center;
+    }
+</style>

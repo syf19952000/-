@@ -1,0 +1,81 @@
+{include file="./admin/html/header.html" /}
+
+<section class="rt_wrap content mCustomScrollbar">
+
+<form method="POST" action="user_editup" enctype="multipart/form-data">
+
+<input type="text" name="id" class="textbox textbox_225" value="{$id}" placeholder="用户账号..."/>
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">用户详情</h2>
+       <a href="adjust_funding.html" class="fr top_rt_btn money_icon">资金管理</a>
+      </div>
+      <ul class="ulColumn2">
+       <li>
+        <span class="item_name" style="width:120px;">上传头像：</span>
+        <label class="uploadImg">
+         <input type="file"/>
+         <span>上传头像</span>
+        </label>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">用户名称：</span>
+        <input type="text" name="name" class="textbox textbox_225" value="{$data.username}" placeholder="用户账号..."/>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">登陆密码：</span>
+        <input type="password" name="pass" class="textbox textbox_225" value="{$data.userpass}" placeholder="用户密码..."/>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+      <!--  <li>
+        <span class="item_name" style="width:120px;">用户等级：</span>
+        <select class="select">
+         <option>用户等级</option>
+         <option>普通用户</option>
+         <option>高级用户</option>
+        </select>
+       </li> -->
+       <li>
+        <span class="item_name" style="width:120px;">电子邮箱：</span>
+        <input type="email" name="email" class="textbox textbox_225" value="{$data.email}" placeholder="电子邮件地址..."/>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">手机号码：</span>
+        <input type="tel" name="mobile" class="textbox textbox_225" value="{$data.mobile}" placeholder="手机号码..."/>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+      <!--  <li>
+        <span class="item_name" style="width:120px;">收货地址：</span>
+        <select class="select">
+         <option>选择省份</option>
+         <option>陕西省</option>
+         <option>山西省</option>
+        </select>
+        <select class="select">
+         <option>选择城市</option>
+         <option>西安市</option>
+         <option>大同市</option>
+        </select>
+        <select class="select">
+         <option>选择区/县</option>
+         <option>长安县</option>
+         <option>不晓得</option>
+        </select>
+       </li>
+       <li> -->
+   <!--      <span class="item_name" style="width:120px;">详细地址：</span>
+        <input type="text" class="textbox textbox_295" value="陕西省西安市未央区凤城五路旺景国际大厦" placeholder="详细地址..."/>
+        <span class="errorTips">错误提示信息...</span>
+       </li> -->
+       <li>
+        <span class="item_name" style="width:120px;"></span>
+        <input type="submit" class="link_btn" value="更新/保存"/>
+       </li>
+      </ul>
+ </div>
+</form>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{include file="./home/else3/html/header.html" /}
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+<section id="page-sidebar" class="pull-left span8">
+
+    <div class="sign-up-form">
+                 <h3 class="tittle">基本信息 <i class="glyphicon glyphicon-file"></i></h3>
+                    <!-- <p>Having hands on experience in creating innovative designs,I do offer design 
+                        solutions which harness</p> -->
+                <div class="sign-up">
+                     <!-- <h3 class="tittle reg">基本 信息 <i class="glyphicon glyphicon-user"></i></h3> -->
+
+            <form class="form-horizontal" method="POST" action="home/user/xiugai" enctype="multipart/form-data">
+            
+                <div class="control-group" style="text-align:left">
+                    <label class="control-label" for="inputEmail">用户名</label>
+                    <div class="controls">
+                       <input type="text" name="username" value="{$data['username']}" placeholder="username">
+                    </div>
+                </div>
+                <div class="control-group" style="text-align:left">
+                    <label class="control-label" for="inputEmail">邮箱 *</label>
+                    <div class="controls">
+                       <input type="text" name="email" value="{$data['email']}" placeholder="Email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">手机 * :</label>
+                    <div class="controls">
+                      <input type="text" name="phone" value="{$data['mobile']}" placeholder="phone">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">性别 * :</label>
+                    <div class="controls">
+                      <input type="text" name="sex" value="{$data['sex']}" placeholder="sex">
+                    </div>
+                </div>
+                <!-- 这应该做一个三级联动 可是手机版的是那样获取城市的吗-->
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">城市 * :</label>
+                    <div class="controls">
+                      <input type="text" name="city" value="{$data['city']}" placeholder="city">
+                    </div>
+                </div>
+
+
+                  <div class="control-group">
+                    <div class="controls">
+                      <!-- <button type="submit" class="btn">修改</button> -->
+                      <input type="submit" value="修改">
+                    </div>
+                  </div>
+
+            </form>
+
+
+                    
+       
+
+
+
+
+</section>
+{include file="./home/else3/html/aside_my.html" /} 
+ 
+        </div>
+    </div>    
+</section>
+
+{include file="./home/else3/html/footer.html" /}  
+
+
+
+	

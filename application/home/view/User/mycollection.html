@@ -1,0 +1,107 @@
+{include file="./home/else3/html/header.html" /}
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+<section id="page-sidebar" class="pull-left span8">
+
+    <div class="sign-up-form">
+                 <h3 class="tittle">我的收藏 <i class="glyphicon glyphicon-file"></i></h3>
+                    <!-- <p>Having hands on experience in creating innovative designs,I do offer design 
+                        solutions which harness</p> -->
+                <div class="sign-up">
+                  
+                  <!-- 现在没收藏的时候能显示页面了，但是有收藏的时候也不显示数据了 ,为什么没收藏的时候就报错呢-->
+        <!-- neq 是不等于 -->
+          <!-- 这条件注释了还是会执行的 -->
+        
+     
+      {if condition="$collection[0] eq '' &&  $collection[1] eq '' && $collection[3] eq '' && $collection[4] eq '' && $collection[2] eq ''"}
+
+        无收藏
+      {else/}
+         
+            {volist name="collection" id="v"}
+              
+              <!-- 详情页面 不让它进detail 页面，进详情页面，可是详情页面也分类别，不一样的类别进的表也不一样啊-->
+                <div class="box">
+                    <a href="home/article/detail.html?art_id={$v['art_id']}"><p><span class="zhuse">【{$v['art_id']}】</span>{$v['art_title']}</a>
+                    <span code="" class="pull-right glyphicon glyphicon-remove-circle"></span></p>
+                    <p class="bottom_xu">
+                        
+                        创建于
+                        {$v['create_time']}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a href="home/article/detail.html?art_id={$v['art_id']}">查看</a>
+                        <!-- 从收藏表中删除还是让用户进详情页进行取消收藏 ，在这取消的话，就得新建一个取消方法，或者也调ajax-->
+                          <!-- 删除功能可咋做啊，用ajax还是调控制器 -->
+                          <!-- <a href="">删除</a> -->
+                          <a href="javascript:;" delete_id="{$v['art_id']}" id="delete">删除</a>
+
+                      
+                    </p>
+
+                    <div class="box_center">
+                        <img src="" alt="" class="box_ewm">
+                        <div class="ewm_right">
+                            <!-- <p>扫描：
+                             
+                            次</p> -->
+                            <p class="operation"><a href="ewm-edit?id="><span class="glyphicon glyphicon-pencil"></span></a> <span class="glyphicon glyphicon-print"></span></p>
+                        </div>
+                    </div>
+                </div>
+            {/volist}
+      {/if}
+                    
+       
+
+
+
+
+</section>
+{include file="./home/else3/html/aside_my.html" /} 
+ 
+        </div>
+    </div>    
+</section>
+
+{include file="./home/else3/html/footer.html" /}  
+
+
+<script type="text/javascript">
+
+$("#delete").click(function(){
+    var id = $(this).attr('delete_id');
+    // alert(id);
+    $.ajax({
+        type:'POST',
+        url:"home/article/delete_collection.html",
+        data:{
+            "id": id,        // 传过去文章表的id
+        },
+        dataType:"json",
+        success:function(data){    
+            // alert(data);
+            var res = JSON.parse(data);     // json 字符串转化为对象
+            if (res.code == '3')            // 收藏成功，变成红色
+            {    
+                console.log(res.code);
+            }
+            if (res.code == '4')           
+            {
+                console.log(res.code);         
+            }
+            location.reload(true); 
+        },
+        error:function(data){
+            console.log(data);
+            alert(222);
+        } 
+    });          
+})
+
+</script>
+
+	

@@ -1,0 +1,95 @@
+{include file="./home/else3/html/header.html" /}
+	
+<script type="text/javascript" src="./sanjiliandong/js/distpicker.data.js"></script>
+<script type="text/javascript" src="./sanjiliandong/js/distpicker.js"></script>
+<script type="text/javascript" src="./sanjiliandong/js/main.js"></script>
+
+
+	<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+                <h4></h4>
+
+                <form name="contact" method="post" action="home_article.html"  enctype="multipart/form-data" class="af-form" id="af-form" />
+                    <div class="af-outer af-required pull-left">
+                        <div class="af-inner">
+                            <label for="name" id="name_label">文章标题:</label>
+                            <input type="text" name="title" id="title" size="30" value="" class="text-input span4" />
+                            <label class="error" for="title" id="name_error">Name is required.</label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                             <label for="email" id="email_label">作者:</label>
+                            <input type="text" name="author" id="author" size="30" value="" class="text-input span4" />
+                        </div>
+                    </div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                        <label for="email" id="email_label">朝代:</label>
+									<div data-toggle="distpicker">
+						              <select id="eprovinceName" data-province="无" name="chao1"></select>
+						              <select id="ecityName" data-city="无" name="chao2"></select>
+						              <select id="edistrictName" data-district="无" name="chao3"></select>
+						            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                           <!--  <label for="email" id="email_label"><h4>文章内容 *:</h4></label>
+                            <textarea name="content" id="content" ></textarea> -->
+                            <label for="input-message" id="content">文章内容:</label>
+                            <textarea name="content" id="content" cols="30" class="text-input span8"></textarea>
+                            <label class="error" for="input-message" id="message_error">Message is required.</label>
+                        </div>
+                    </div>
+							
+
+                     <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <input type="submit" name="button" class="btn btn-welcome btn-large"  value="发布" />
+                        </div>
+                    </div> 
+                </form>
+    
+
+            </section>
+		</div>
+		</div>
+		</section>
+
+					
+
+
+	<!-- <!-- 打开不打开这个，就是换个样式，删了才行  -->
+
+{include file="./home/else3/html/footer.html" /}   
+
+<script type="text/javascript">
+$(function(){
+
+$("#distpicker").distpicker('destroy');
+$("#distpicker").distpicker({
+    province: '省份名',
+    city: '城市名',
+    district: '区名',
+    autoSelect: true,
+    placeholder: false
+    // alter($("#eprovinceName").val(data.provinceName););
+});
+});
+
+$("#eprovinceName").val(data.provinceName);
+$("#eprovinceName").trigger("change");
+$("#ecityName").val(data.cityName);
+$("#ecityName").trigger("change");
+$("#edistrictName").val(data.districtName);
+$("#edetailAddress").val(data.detailAddress);
+
+// 把选中的值传到控制器
+
+</script>

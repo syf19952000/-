@@ -1,0 +1,354 @@
+{include file="./home/else3/html/header_edit.html" /}
+
+<style>
+.avatar{
+        margin:10px 5px;
+        overflow:hidden;
+    }
+   
+.avatar figure div{
+    display:inline-block;
+    margin:5px auto;
+    width:30px;
+    height:30px;
+    border-radius:50px;
+    border:2px solid #fff;
+    overflow:hidden;
+    -webkit-box-shadow:0 0 3px #ccc;
+    box-shadow:0 0 3px #ccc;
+}
+.avatar img{
+    width:100%;
+    min-height:100%; text-align:center;
+}
+
+
+</style>
+
+<!-- 这样头像是一个方块 -->
+<!-- <div >
+    <figure>  
+        <div><img src="{$touxiang}"  width="30" height="30"/></div>  
+    </figure>
+</div>   -->
+
+<!-- 方形展示框 -->
+<!-- <style>
+.avatar {
+        width: 50px;
+        float: left;
+        margin: 0 8px 0 0;
+        box-shadow: 0 0 3px #e0e0e0;
+        border-radius: 5px;
+        border: 1px solid #e0e0e0;
+        }
+
+.avatar .figure img {
+    width: 50px;
+    height: 50px;
+}
+
+</style> -->
+
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="alignrleft span8">
+
+                <article class="blog-post">
+                    <div class="row">
+                        <div class="span8">
+                            <h3 class="post-title"><a href="./blog-single.html">{$data['art_title']}</a></h3>
+                            <div class="post-media"><img src="example/blog1.jpg" alt="" /></div>
+                            <div class="post-content">
+                                <p>
+                                   {$data['art_content']}
+                                </p>
+                                <!--  这个标签可以放诗词注释 -->
+                                <!-- <blockquote>
+                                   {$data['art_content']}
+                                </blockquote> -->
+                            </div>
+                            <ul class="post-meta">
+                                <li><i class="icon-user"></i> <a href="#">{$data['art_author']}</a></li>
+                                <li><i class="icon-dashboard"></i> <a href="#">{$data['art_chao']}</a></li>
+                                <li><i class="icon-calendar"></i> <a href="#">{$data.create_time}</a></li>
+                                
+                                <!-- 用户刷新页面显示的颜色 ，但是取消收藏之后颜色不变-->
+                                {if condition="$color == 5"}
+                                <div >
+                                    <i id="collection" class="icon-heart cs"></i><br />
+                                </div>
+                                {else/}
+                                <div >
+                                    <i id="collection" class="icon-heart"></i><br />
+                                </div>
+                                {/if}
+       
+                            </ul>
+                            <!-- 标签样式 -->
+                            <ul id="filtrable">
+                                {foreach $biaoqian as $v}
+                                      <!-- <li class="biaoqian" data="{$v['id']}"><span>{$v['biaoqian_name']}</span></li> -->
+                                      <li class="biaoqian"><a href="#">{$v['biaoqian_name']}</a></li>
+                                {/foreach}   
+                            </ul>
+                        </div>
+                    </div>
+                </article>  
+
+                <hr />
+
+
+                <!-- 显示评论内容 -->
+                <!--comments-->
+                <!-- <h3>4 评论</h3> -->
+                <h3>{$num} 评论</h3>
+                <div class="comments">
+                    <ul class="comments-list">
+                    {volist name="commlist" id="data"} 
+                    <li comment_id="{$data['id']}"> 
+                        <li class="comments_li">
+                        <!-- 一级评论 -->
+                            <div class="comment clearfix">
+                                <div class="avatar">
+                                    <figure>  
+                                        <div><img src="{$touxiang}"  /></div>  
+                                    </figure>
+                                </div>  
+
+                                <p class="meta">{$data.nickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;says:<br /><small></small></p>
+                                <div class="textarea">
+                                    <p>{$data.content} </p>
+                                </div>   
+                                <div class="meta">
+                                    <a href="javascript:;" id="replay_id" comment_id="{$data.id}" class="reply_btn" >回复</a>
+                                    <a href="javascript:;" delete_id="{$data.id}" id="delete">删除</a>
+                                </div>
+                            </div>
+                        <!-- 二级评论 -->
+                            <ul class="clearfix">
+                            {volist name="data.children" id="child"  }
+                            <li comment_id="{$child.id}"> 
+                                <li>                           
+                                    <div class="comment clearfix">                                     
+                                        <div class="avatar">
+                                            <figure>  
+                                                <div><img src="{$touxiang}" /></div>  
+                                            </figure>
+                                        </div>  
+                                        <p class="meta">{$child.nickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;says:<br /><small>{$child.create_time} </small></p>
+                                        <div class="textarea">
+                                            <p>{$child.content}</p>
+                                        </div>
+                                <!-- <a href="javascript:;" class="reply_btn" >回复</a> -->
+                                <div class="meta">
+                                    <a href="javascript:;" id="replay_id" comment_id="{$child.id}" class="reply_btn" >回复</a>
+                                    <a href="javascript:;" delete_id="{$child.id}" id="delete">删除</a>
+                                </div>
+                                    </div>
+                        <!-- 三级评论 -->
+                                    <ul class="clearfix">
+                                     {volist name="child.children" id="grandson" }
+                                     <li comment_id="{$grandson.id}">
+                                        <li>
+                                           <div class="comment clearfix">                                              
+                                                <div class="avatar">
+                                                    <figure>  
+                                                        <div><img src="{$touxiang}"  /></div>  
+                                                    </figure>
+                                                </div>  
+
+                                                <p class="meta">{$grandson.nickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;says:<br /><small>{$grandson.create_time}</small> </p>
+                                                <div class="textarea">
+                                                    <p>{$grandson.content}</p>
+                                                </div>
+                                                <a href="javascript:;" delete_id="{$grandson.id}" id="delete">删除</a>
+                                            </div>       
+                                        </li>
+                                    {/volist}
+                                    </ul>          
+                                </li>
+                                {/volist}
+                            </ul>
+                       
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+
+                <hr />
+
+                <!-- 评论框 -->
+                <form  method="post" action="add_nullcomment.html"  enctype="multipart/form-data" />
+                    <div class="clear"></div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <input type="hidden" name="art_id" value="{$data['id']}" />
+                            <label for="input-message" id="message_label">发表 评论:</label>
+                            <textarea name="message" id="input-message" cols="30" class="text-input span8"></textarea>
+                            <label class="error" for="input-message" id="message_error">Message is required.</label>
+                        </div>
+                    </div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                         <input type="submit" name="button" class="btn btn-welcome btn-large"  value="发布" />
+                            <!-- <input type="submit" name="submit" class="form-button btn btn-welcome btn-large" id="submit_btn" value="提交!" /> -->
+                        </div>
+                    </div>
+                </form>
+        
+            </section>
+
+
+
+            <!-- 显示相近文章 -->
+                <hr />
+
+
+
+{include file="./home/else3/html/aside222.html" /}
+
+        </div>
+    </div>    
+</section>
+
+{include file="./home/else3/html/footer.html" /}
+
+
+
+<script type="text/javascript">
+
+// $(function(){
+       
+        //页面加载完毕后开始执行的事件
+        $(".reply_btn").click(function(){
+            var parent_id = $(this).attr("comment_id");                     //要回复的评论id
+            $(".reply_textarea").remove();
+            $(this).parent().append("<div class='reply_textarea'><textarea id='replay_content' rows='5' cols='100' ></textarea><br/><input type='submit' onclick='submit_button("+parent_id+")' value='发表' /></div>");    
+        });
+        
+
+        function submit_button(parent_id){
+            var b = document.getElementById('replay_content').value;
+            // alert(parent_id);
+            // console.log(parent_id);
+             $.ajax({
+                    type:'POST',
+                    url:"add_comment.html",
+                    data:{
+                        "content": b,
+                        "comment_id": parent_id,
+                        "art_id": {$data['art_id']},
+                    },
+                    success:function(data){   
+                        data = $.parseJSON(data);
+                        location.reload(true);      // 重载页面        
+                        if (data.code == '3') 
+                        {       
+                            console.log('成功');    
+                        }else if(data.code == '4')
+                        {
+                            console.log('失败');   
+                        }else{
+                            alert('用户未登录的情况下，不能发表评论'); 
+                        }
+                        
+                    },
+                    error:function(){
+                        
+                    } 
+                });              
+        }
+
+</script>
+
+                
+
+<!-- 111 现在走的是这个方法 -->
+<script type="text/javascript">
+ $("#collection").click(function(){
+    
+    // 现在是不管收藏还是取消，都没颜色
+
+    $.ajax({
+        type:'POST',
+        url:"detail_collection.html",
+        data:{
+            "art_id": {$data['art_id']},        // 传过去文章表的id
+        },
+        dataType:"json",
+        success:function(data){    
+            var res = JSON.parse(data);     // json 字符串转化为对象
+            if (res.code == '3')            // 收藏成功，变成红色
+            {    
+                // $('.icon-heart').attr("class","cs");   // 隐藏了
+                $('#collection').toggleClass('cs');         // 好像这不对啊
+                // document.getElementById('collection').style.background="#FF0000";  // 这是把整个都变红了 
+                console.log(res.code);
+            }
+            if (res.code == '4')           // 取消收藏
+            {
+                $('#collection').toggleClass('cs'); 
+                console.log(res.code);         
+            }
+        },
+        error:function(data){
+            console.log(data);
+            console.log(data.code);
+            alert(222);
+        } 
+    });          
+});
+        
+</script>
+
+
+<script type="text/javascript">
+
+$("#delete").click(function(){
+    var id = $(this).attr('delete_id');
+    // alert(id);
+    $.ajax({
+        type:'POST',
+        url:"delete_comment.html",
+        data:{
+            "id": id,        // 传过去文章表的id
+        },
+        dataType:"json",
+        success:function(data){    
+            // alert(data);
+            var res = JSON.parse(data);     // json 字符串转化为对象
+            if (res.code == '3')            // 收藏成功，变成红色
+            {    
+                console.log(res.code);
+            }
+            if (res.code == '4')           
+            {
+                console.log(res.code);         
+            }
+            if(res.code == '5')
+            {
+                alert('您非评论人，不能进行删除操作');
+            }
+            location.reload(true); 
+        },
+        error:function(data){
+            console.log(data);
+            alert(222);
+        } 
+    });          
+})
+
+</script>
+
+
+<style>
+
+    .like{ font-size:66px;  color:#ccc; cursor:pointer;}
+    .cs{color:#FF0000;}
+
+</style>
+

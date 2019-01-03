@@ -1,0 +1,46 @@
+{include file="./home/else3/html/header.html" /}
+
+
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+                <h4></h4>
+
+                <form name="contact" method="post" action="homelogin_login.html"  enctype="multipart/form-data" class="af-form" id="af-form" />
+                    <div class="af-outer af-required pull-left">
+                        <div class="af-inner">
+                            <label for="name" id="name_label">User Name:</label>
+                            <input type="text" name="username" id="name" size="30" value="" class="text-input span4" />
+                            <label class="error" for="name" id="name_error">Name is required.</label>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <!-- <label for="input-message" id="message_label">Your Message:</label>
+                            <textarea name="message" id="input-message" cols="30" class="text-input span8"></textarea>
+                            <label class="error" for="input-message" id="message_error">Message is required.</label> -->
+                             <label for="email" id="email_label">Password:</label>
+                            <input type="text" name="password" id="Password" size="30" value="" class="text-input span4" />
+                            <!-- <label class="error" for="Password" id="email_error">Password is required.</label> -->
+                        </div>
+                    </div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <input type="submit" name="button" class="btn btn-welcome btn-large"  value="登录" />
+                        </div>
+                    </div>
+                </form>
+
+
+            </section>
+
+        </div>
+    </div>    
+</section>
+
+
+{include file="./home/else3/html/footer.html" /}  
+	

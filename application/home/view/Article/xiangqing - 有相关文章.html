@@ -1,0 +1,281 @@
+{include file="./home/else3/html/header.html" /}
+
+
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+        <section id="page-sidebar" class="alignrleft span8">
+
+                <article class="blog-post">
+                    <div class="row">
+                        <div class="span8">
+                            <h3 class="post-title"><a href="./blog-single.html">{$data['art_title']}</a></h3>
+                            <div class="post-media"><img src="example/blog1.jpg" alt="" /></div>
+                            <div class="post-content">
+                                <p>
+                                   {$data['art_content']}
+                                </p>
+                                <!-- <p>
+                                   {$data['art_content']}
+                                </p>
+                               
+                                <p>
+                                   {$data['art_content']}
+                                </p> -->
+                                <!--  这个标签可以放诗词注释 -->
+                                <!-- <blockquote>
+                                   {$data['art_content']}
+                                </blockquote> -->
+                            </div>
+                            <ul class="post-meta">
+                                <li><i class="icon-user"></i> <a href="#">{$data['art_author']}</a></li>
+                                <li><i class="icon-dashboard"></i> <a href="#">{$data['art_chao']}</a></li>
+                                <li><i class="icon-calendar"></i> <a href="#">{$data.create_time}</a></li>
+                                <!-- 收藏这应该走ajax -->
+                                <!-- <li><i class="icon-heart"></i></li> -->
+
+                                <!-- 111 -->
+                                <!-- 根据ajax返回值决定颜色 -->
+                              <!--   <div >
+                                    <i id="collection" class="icon-heart"></i><br />
+                                </div> -->
+                                
+                                <!-- 用户刷新页面显示的颜色 ，但是取消收藏之后颜色不变-->
+                                {if condition="$color == 5"}
+                                <div >
+                                    <!-- <i id="collection" class="icon-heart cs"></i><br /> -->
+                                    <!-- <i id="collection" class="icon-heart" class2="cs"></i><br /> -->
+                                    <i id="collection" class="icon-heart cs"></i><br />
+
+                                </div>
+                                {else/}
+                                <div >
+                                    <i id="collection" class="icon-heart"></i><br />
+                                </div>
+                                {/if}
+       
+                  
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </article>  
+
+                <hr />
+
+
+                <!-- 显示评论内容 -->
+                <!--comments-->
+                <!-- <h3>4 评论</h3> -->
+                <h3>{$num} 评论</h3>
+                <div class="comments">
+                    <ul class="comments-list">
+                    {volist name="commlist" id="data"} 
+                    <li comment_id="{$data['id']}"> 
+                        <li class="comments_li">
+                        <!-- 一级评论 -->
+                            <div class="comment clearfix">
+                                <img src="images/avatar.png"  class="avatar" />
+                                <p class="meta">{$data.nickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;says:<br /><small></small></p>
+                                <div class="textarea">
+                                    <p>{$data.content} </p>
+                                </div>   
+                                <div class="meta"><a href="javascript:;" id="replay_id" comment_id="{$data.id}" class="reply_btn" >回复</a></div>
+                            </div>
+                        <!-- 二级评论 -->
+                            <ul class="clearfix">
+                            {volist name="data.children" id="child"  }
+                            <li comment_id="{$child.id}"> 
+                                <li>                           
+                                    <div class="comment clearfix">
+                                        <!-- <img src="images/avatar.png" alt="avatar" class="avatar" /> -->
+                                        <img src="images/avatar.png"  class="avatar" />
+                                        <p class="meta">{$child.nickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;says:<br /><small>{$child.create_time} </small></p>
+                                        <div class="textarea">
+                                            <p>{$child.content}</p>
+                                        </div>
+                                <!-- <a href="javascript:;" class="reply_btn" >回复</a> -->
+                                <div class="meta"><a href="javascript:;" id="replay_id" comment_id="{$child.id}" class="reply_btn" >回复</a></div>
+                                        
+                                         <!-- <div class="meta"> <a class="comment-reply" replyswitch="off" comment_id="{$child.id}">回复</a> </div>  -->
+                                    </div>
+                        <!-- 三级评论 -->
+                                    <ul class="clearfix">
+                                     {volist name="child.children" id="grandson" }
+                                     <li comment_id="{$grandson.id}">
+                                        <li>
+                                           <div class="comment clearfix">
+                                                <img src="images/avatar.png" class="avatar" />
+                                                <p class="meta">{$grandson.nickname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;says:<br /><small>May 17, 2012</small> </p>
+                                                <div class="textarea">
+                                                    <p>{$grandson.content}</p>
+                                                </div>
+                                                <!-- 三级评论就不能回复了 -->
+                                <!-- <div class="meta"><a href="javascript:;" id="replay_id" comment_id="{$grandson.id}" class="reply_btn" >回复</a></div> -->
+
+                                            </div>       
+                                        </li>
+                                    {/volist}
+                                    </ul>          
+                                </li>
+                                {/volist}
+                            </ul>
+                       
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+
+                <hr />
+
+                <!-- 评论框 -->
+                <form  method="post" action="home/article/add_nullcomment.html"  enctype="multipart/form-data" />
+                    <div class="clear"></div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <input type="hidden" name="art_id" value="{$data['id']}" />
+                            <label for="input-message" id="message_label">发表 评论:</label>
+                            <textarea name="message" id="input-message" cols="30" class="text-input span8"></textarea>
+                            <label class="error" for="input-message" id="message_error">Message is required.</label>
+                        </div>
+                    </div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                         <input type="submit" name="button" class="btn btn-welcome btn-large"  value="发布" />
+                            <!-- <input type="submit" name="submit" class="form-button btn btn-welcome btn-large" id="submit_btn" value="提交!" /> -->
+                        </div>
+                    </div>
+                </form>
+        
+            </section>
+
+        <hr />
+
+        <div class="row">
+            <div class="span12">
+                <h3>相关 文章</h3>
+                <div id="our-projects" class="carousel bttop">
+                    <div class="carousel-wrapper">
+                        <ul >
+                            <li>
+                                <article>
+                                    <div class="row">
+                                        <div class="span8">
+                                            <h3 class="post-title"><a href="./blog-single.html">{$data['art_title']}</a></h3>
+                                            <div class="post-media"><img src="example/blog1.jpg" alt="" /></div>
+                                            <div class="post-content">
+                                                <p>
+                                                   {$data['art_content']}
+                                                </p>
+                                            </div>                                       
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                           
+                            
+
+                            <li>
+                                <article>
+                                    <div class="inner-image">
+                                        <a href="example/view.jpg" data-rel="prettyPhoto">
+                                            <img src="example/latest6.jpg" alt="" />
+                                            <span class="frame-overlay"></span>
+                                        </a>
+                                    </div>
+                                    <div class="sliding">
+                                        <div class="inner-text">
+                                            <h4 class="title"><a href="./portfolio-single.html">Project title 6</a></h4>
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        $('#our-projects').elastislide({
+                            imageW : 270,
+                            border : 0,
+                            minItems : 1,
+                            margin : 30
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!--footer-->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <p><img src="example/logo.png" alt="" /></p>
+                <address>
+                    <p><i class="icon-map-marker"></i> Street Name 432/2, London, 90210</p>
+                    <p><i class="icon-phone"></i> (123) 456-7890</p>
+                    <p><i class="icon-mobile-2"></i> (123) 456-7890</p>
+                    <p><i class="icon-mail-3"></i> <a href="mailto:#">info@email.com</a></p>
+                </address>
+            </div>
+            <div class="span8">
+                <div class="row">
+                    <div class="span8"></div>
+                    <div class="span8">
+
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <p class="heading">About Us</p>
+                <p>Curabitur suscipit ultricies metus quis scelerisque. Quisque eget enim orci. Cras sagittis volutpat auctor. </p>
+                <p class="heading">Subscribe</p>
+                <p>Keep updated with our news. Your email is safe with us!</p>
+                <div class="input-append">
+                    <input type="text" placeholder="Enter Email Address" class="span2" />
+                    <button type="button" class="btn btn-inverse">Subscribe!</button>
+                </div>
+            </div>
+            <div class="span4">
+                <p class="heading">Company</p>
+                <ul class="footer-navigate">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./portfolio4.html">Portfolio</a></li>
+                    <li><a href="./blog-sidebar-right.html">Blog</a></li>
+                    <li><a href="./services.html">Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--footer menu-->
+<section id="footer-menu">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <p class="copyright">Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+            </div>
+            <div class="span8 hidden-phone">
+                <ul class="pull-right">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

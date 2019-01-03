@@ -1,0 +1,160 @@
+{include file="./admin/html/header.html" /}
+
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">标签列表</h2>
+       <a href="admin/biao/add_page.html" class="fr top_rt_btn add_icon">添加新标签</a>
+      </div>
+      <section class="mtb">
+
+       <!-- 做ajax查询 -->
+     
+         <input type="text" id="search" class="textbox textbox_225" placeholder="输入标签名查询..."/>
+         <input type="submit" id="searchbutton" value="查询" class="group_btn"/>
+    
+      </section>
+      <table class="table">
+       <tr>
+        <th>ID</th>
+        <th>分类名称</th>
+        <th>编辑</th>
+        <!-- <th>添加</th> -->
+        <th>删除</th>
+       </tr>
+    {foreach $biaoqian as $v}
+    <!-- // 这是循环不能加id，要不每个tr出来都是一样的id，会报错 -->
+        <tr class='tableT'> 
+            <td class="center">{$v.id}</td>
+            <td>{$v.biaoqian_name}</td>
+            <td class="center">
+             <a href="admin/biao/edit_page?edit_id={$v.id}" title="编辑" class="link_icon">&#101;</a>
+            </td>
+            <!-- ajax 删除 -->
+            <td class="center">
+             <!-- <a href="admin/biao/delete?delete_id={$v.id}" title="删除" class="link_icon">&#100;</a> -->
+             <a href="javascript:;" delete_id="{$v['id']}" id="delete" title="删除" class="link_icon">&#100;</a>
+
+            </td>
+        </tr>
+    {/foreach}   
+      </table>
+
+       <!-- 分页 -->
+      <div class="pagination">{$biaoqian->render()}</div>
+
+ </div>
+</section>
+</body>
+</html>
+
+<script type="text/javascript">
+
+$("#delete").click(function(){
+    var id = $(this).attr('delete_id');
+    // alert(id);
+    $.ajax({
+        type:'POST',
+        url:"admin/biao/delete.html",
+        data:{
+            "id": id,        // 传过去文章表的id
+        },
+        dataType:"json",
+        success:function(data){    
+            // alert(data);
+            var res = JSON.parse(data);     // json 字符串转化为对象
+            if (res.code == '3')            // 收藏成功，变成红色
+            {    
+                console.log(res.code);
+            }
+            if (res.code == '4')           
+            {
+                console.log(res.code);         
+            }
+            location.reload(true); 
+        },
+        error:function(data){
+            console.log(data);
+            alert(222);
+        } 
+    });          
+})
+
+</script>
+
+
+<!-- ajax 做搜索 -->
+
+<script type="text/javascript">
+
+$("#searchbutton").click(function(){
+    var name = document.getElementById('search').value;
+    // alert(name);
+    // 现在 编辑能走，但是 删除 调不到
+     $.ajax({
+            url:'admin/biao/search.html', // 走不到后台为啥
+            type:'POST',
+            data:{
+               "name": name,
+            },
+            dataType:'json',
+            success:function(data){
+                var data2 = JSON.parse(data);
+                var item = "";
+                // $(".tableT").empty(); //清空
+                $(".table").empty(); //清空
+                for(var i = 0 ; i < data2.shuju.length; i++) {
+                  item += 
+                  "<tr><td>"+data2.shuju[i].id+"</td><td>"+data2.shuju[i].biaoqian_name+"</td><td class='center'><a href='admin/biao/edit_page?edit_id="+data2.shuju[i].id+"' title='编辑' class='link_icon'>&#101;</a></td><td class='center'><a href='javascript:;' delete_id="+data2.shuju[i].id+" id='delete' title='删除' class='link_icon'>&#100;</a></td></tr>";
+
+                 // item += "<tr><td>"+data2.shuju[i].id+"</td><td>"+data2.shuju[i].biaoqian_name+"</td></tr>"; 
+                }
+
+                // $(".tableT").append(item);   // 显示到里面
+                $(".table").append(item);   // 显示到里面
+                     
+               // 你先自己看看，想办法让它的表头不要取消。我这有点事
+            },
+            error:function(data){
+                // alert(msg);
+                alert(222);
+                console.log(data);
+            }
+        })  
+    
+})
+
+
+
+// alert 弹出框 ，添加分类名称
+
+// {
+//     // var str=prompt("添加分类名称","比如我叫啥");
+//     var str=prompt("添加分类名称","");
+//     console.log(str);
+//     // if(str)
+//     // {
+//     //     alert("您刚输入的是："+ str)
+//     // }
+//      $.ajax({
+//             url:'admin_add.html', // 走不到后台为啥
+//             type:'POST',
+//             data:{
+//                "fenlei": str
+//             },
+//             dataType:'json',
+//             success:function(data){
+//                 alert(111);
+         
+                
+//             },
+//             error:function(msg){
+//                 // alert(msg);
+//                 console.log(msg);
+//             }
+//         })  
+// }
+
+</script>
+
+

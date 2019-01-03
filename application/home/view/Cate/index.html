@@ -1,0 +1,47 @@
+<!-- //  	页面引进头部的话，样式就乱了 -->
+{include file="./home/else3/html/header.html" /}
+
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+
+
+
+						<form action="home/cate/add" method="post">
+
+						 请选择父级栏目：<select name="pid" size="20">
+
+						 <option value="0">根栏目</option>
+
+						 {volist name="alist" id="vo"}
+
+							 <option value="{$vo['id']}">
+
+							 {:str_repeat("__",$vo['count']-2)}
+
+							 {$vo['name']}
+
+							 </option>
+
+						 {/volist}
+
+						 </select><br />
+
+						 新的栏目名称：<input type="text" name="name" /><br />
+
+						 <input type="submit" value="添加栏目" />
+
+						 </form>
+
+
+
+
+
+ 
+
+        </div>
+    </div>
+</section>
+
+{include file="./home/else3/html/footer.html" /}

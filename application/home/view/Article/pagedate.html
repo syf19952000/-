@@ -1,0 +1,32 @@
+{include file="./home/else3/html/header.html" /}
+
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+
+
+
+                <div>
+                <ul>
+                {volist name='list' id='user'}
+                    <li> {$user.art_title}</li>
+                {/volist}
+                </ul>
+                </div>
+                {$list->render()}
+
+
+ 
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+

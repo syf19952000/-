@@ -1,0 +1,84 @@
+{include file="./home/else2/html/header.html" /}
+	
+	<!-- /////////////////////////////////////////Content -->
+	<div id="page-content" class="archive-page container">
+		<div class="">
+			<div class="row">
+				<div id="main-content" class="col-md-8">
+
+				<!-- 文章 -->
+					<div class="box">
+						<!-- 文章标题 -->
+						<a href="#"><h2 class="vid-name">{$data['art_title']}</h2></a>		
+						<div class="info">
+							<!-- 作者 -->
+							<h5>By <a href="#">{$data['art_author']}</a>&nbsp;&nbsp;&nbsp;&nbsp; {$data['art_chao1']}</h5>
+							<!-- 发布时间 -->
+							<span><i class="fa fa-calendar"></i>{$data['create_time']}</span>
+							<!-- 评论条数 -->
+							<span><i class="fa fa-comment"></i> 0 Comments</span>
+							<span><i class="fa fa-heart"></i>1,200</span>
+							<ul class="list-inline">
+								<li><a href="#">Rate</a></li>
+								<li> - </li>
+								<li>
+									<span class="rating">
+										<!-- <i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half-o"></i> -->
+									</span>
+								</li>
+							</ul>
+						</div>
+						<div class="wrap-vid">
+							<div class="zoom-container">
+								<div class="zoom-caption">
+								</div>
+								<img src="images/9.jpg" />
+							</div>
+							<!-- 文章内容 -->
+							<p>{$data['art_content']} <a href="#">MORE...</a></p>
+						</div>
+					</div>
+					<hr class="line">
+					
+			
+					
+
+
+					<!-- 分页 -->
+					<hr class="line">
+					<!-- <div class="box">
+						<center>
+						<ul class="pagination">
+							<li>
+							  <a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							  </a>
+							</li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li>
+							  <a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							  </a>
+							</li>
+						</ul>
+					</center>
+					</div> -->
+				</div>
+
+
+
+{include file="./home/else2/html/sidebar.html" /}
+
+			</div>
+		</div>
+	</div>
+
+{include file="./home/else2/html/footer.html" /}

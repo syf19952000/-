@@ -1,0 +1,56 @@
+{include file="./home/else3/html/header_edit.html" /}
+	
+<link href="/home/else3/css/fabu/home.css" type="text/css" rel="stylesheet" />
+<link href="/home/else3/css/layui.css" type="text/css" rel="stylesheet" />
+
+<section class="aui-content">
+    <div style="height:20px;"></div>
+    <div class="aui-content-up">
+
+            <form name="contact" method="post" action="../topic/editpage.html"  enctype="multipart/form-data" class="af-form" id="af-form" />
+       
+            
+            <div class="aui-content-up-form">
+                <h2>修改 话题</h2>
+            </div>
+               
+            <input style="display:none" type="text" name="art_id"  size="30" value="{$data}" class="text-input span4" />
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    话题 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" class="aui-form-control-two" name="title" id="title" onBlur="checkna()" value="{$data2.art_title}" placeholder="请输入标题">
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    话题内容 <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <textarea name="content" id="content" cols="30" class="aui-form-control">{$data2.art_content}</textarea>
+                    <span class="tips" id="divname"></span>
+                </div>
+            </div>
+
+            <div class="aui-btn-default">
+                <input type="submit" id="button" class="aui-btn aui-btn-account" value="修改" />    
+            </div>
+    </form>
+    </div>
+</section>
+
+
+{include file="./home/else3/html/footer.html" /}   
+
+
+
+
+ 
+					
+        
+
+
+

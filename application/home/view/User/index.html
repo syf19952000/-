@@ -1,0 +1,56 @@
+{include file="./home/else3/html/header.html" /}
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+             <h3 class="tittle">个人资料<i class="glyphicon glyphicon-file"></i></h3>
+                <!-- <h4></h4> -->
+                <!-- 去掉了input框，直接显示的 -->
+               
+                    <div class="af-outer af-required pull-left">
+                        <div class="af-inner">
+                            <label for="name" id="name_label">昵称:&nbsp;&nbsp;&nbsp;&nbsp;{$data['username']}</label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                             <label for="email" id="email_label">邮箱:&nbsp;&nbsp;&nbsp;&nbsp;{$data['email']}</label>
+                        </div>
+                    </div>
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                             <label for="email" id="email_label">手机:&nbsp;&nbsp;&nbsp;&nbsp;{$data['mobile']}</label>
+                        </div>
+                    </div>
+
+                    
+                    <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <label for="email" id="email_label">性别:&nbsp;&nbsp;&nbsp;&nbsp;{$data['sex']}</label>
+                        </div>
+                    </div>
+
+                     <div class="af-outer af-required">
+                        <div class="af-inner">
+                            <label for="email" id="email_label">城市:&nbsp;&nbsp;&nbsp;&nbsp;{$data['city']}</label>
+                        </div>
+                    </div>
+
+
+
+            </section>
+            {include file="./home/else3/html/aside_my.html" /}
+        </div>
+    </div>    
+</section>
+
+
+
+
+
+
+{include file="./home/else3/html/footer.html" /}  
+	

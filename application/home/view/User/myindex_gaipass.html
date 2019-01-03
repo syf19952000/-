@@ -1,0 +1,82 @@
+{include file="./home/else3/html/header.html" /}
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+<section id="page-sidebar" class="pull-left span8">
+
+           
+            <div class="sign-up-form">
+                 <h3 class="tittle">修改密码 <i class="glyphicon glyphicon-file"></i></h3>
+                    <!-- <p>Having hands on experience in creating innovative designs,I do offer design 
+                        solutions which harness</p> -->
+                <div class="sign-up">
+                    <form class="form-horizontal" method="POST" action="home/user/xiu_pass" onsubmit="return checkPass();" enctype="multipart/form-data">
+                        <div class="control-group" style="text-align:left">
+                            <label class="control-label" for="inputEmail">原密码：</label>
+                            <div class="controls">
+                               <input type="password" name="password" id="upass" value="{$data.userpass}" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="control-group" style="text-align:left">
+                            <label class="control-label" for="inputEmail">修改密码：</label>
+                            <div class="controls">
+                               <input type="password" name="password1"   id="xpass" placeholder="password">
+                            </div>
+                        </div>
+                        <div class="control-group" style="text-align:left">
+                            <label class="control-label" for="inputEmail">确认修改密码：</label>
+                            <div class="controls">
+                               <input type="password" name="password2"  id="xpass2" placeholder="password">
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <div class="controls">
+                              <!-- <button type="submit" class="btn">修改</button> -->
+                              <input type="submit" value="修改">
+                            </div>
+                        </div>
+
+                </form>
+
+
+                </div>
+            </div>
+
+
+</section>
+{include file="./home/else3/html/aside_my.html" /} 
+ 
+        </div>
+    </div>    
+</section>
+
+{include file="./home/else3/html/footer.html" /}  
+
+
+
+<script type="text/javascript">
+
+// 参考网址
+// https://zhidao.baidu.com/question/1384348192001709660.html
+function checkPass(){
+    var psd1=document.getElementById("xpass").value;
+    var psd2=document.getElementById("xpass2").value;
+    if(psd1 === ''){
+      alert('密码不能为空');
+      return false;
+    }
+    // 密码不一致的时候停止运行
+    if(psd1 != psd2){
+        alert("密码不一致，请重新输入！");
+        return false;
+    }else{
+       return true;
+    }  
+} 
+
+</script>
+	

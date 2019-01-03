@@ -1,0 +1,57 @@
+{include file="./home/else3/html/header.html" /}
+
+<!-- 得在这个页面做一个搜索 -->
+<script src="https://cdn.jsdelivr.net/mark.js/7.0.0/jquery.mark.min.js"></script>
+
+<style type="text/css">
+    mark {
+        background: orange;
+        color: black;
+    }
+</style>
+
+<section id="container">
+    <div class="container">
+        <div class="row">
+            <section id="page-sidebar" class="pull-left span8">
+
+            
+                <section>
+                    <h3 class="widget-title">标签列表</h3>
+                    <input type="text" id="searchbiao" value="搜索关键词" >
+                    <div class="tags" id="biaocontext">
+                    {volist name="biaoqian" id="v"}
+                        <a href="home_zhanshibiao.html?biaoqian_id={$v['id']}"><i class="icon-tag icon-white"></i>{$v['biaoqian_name']}</a>
+                        &nbsp;&nbsp;&nbsp;
+                    {/volist}
+                    </div>
+
+                </section>
+
+            </section>
+
+    <!-- 在这引进右边栏 -->
+    {include file="./home/else3/html/aside222.html" /}
+
+        </div>
+    </div>
+</section>
+
+{include file="./home/else3/html/footer.html" /}
+       
+       
+<script type="text/javascript">
+
+    $(function() {
+        $("#searchbiao").on("input.highlight", function() {
+
+            var searchTerm = $(this).val();
+
+            $("#biaocontext").unmark().mark(searchTerm);
+        }).trigger("input.highlight").focus();
+    });
+
+</script>
+
+
+

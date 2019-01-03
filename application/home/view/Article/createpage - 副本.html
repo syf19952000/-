@@ -1,0 +1,48 @@
+{include file="./home/else2/html/header.html" /}
+	
+	<!-- ////////////////Content -->
+	<div id="page-content" class="archive-page container">
+		<div class="">
+			<div class="row">
+				
+				<div id="main-content" class="col-md-8">
+					<div class="box">
+						<center><div class="box-header">
+							<h2 class="center">记录</h2>
+						</div></center>
+						<div class="box-content">
+							<div id="contact_form">
+								<form name="form1" id="ff" method="post" action="home_article" >
+									<label>
+									<span>文章标题:</span>
+									<input type="text"  name="title" id="title" required>
+									</label>
+									<label>
+									<span>作者:</span>
+									<input type="text"  name="author" id="author" required>
+									</label>
+									<label>
+									<span>朝代:</span>
+									<input type="text"  name="year" id="year" required>
+									</label>
+									<label>
+									<span>文章内容:</span>
+									<textarea name="content" id="content"></textarea>
+									</label>
+									<center><input class="sendButton" type="submit" value="发布"></center>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+		{include file="./home/else2/html/sidebar.html" /}
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 打开不打开这个，就是换个样式，删了才行  -->
+
+{include file="./home/else2/html/footer.html" /}   

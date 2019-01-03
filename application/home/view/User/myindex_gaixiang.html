@@ -1,0 +1,74 @@
+{include file="./home/else3/html/header.html" /}
+
+<!--container-->
+<section id="container">
+    <div class="container">
+        <div class="row">
+<section id="page-sidebar" class="pull-left span8">
+
+            <!-- register -->
+            <div class="sign-up-form">
+                 <h3 class="tittle">修改头像 <i class="glyphicon glyphicon-file"></i></h3>
+                <div class="sign-up">
+                     
+
+            <form  method="POST" action="home/user/gaixiang_zhi" enctype="multipart/form-data">
+                    
+                    <div class="sign-u">
+                        <div class="sign-up1">
+                            <!-- <h4 class="a">修改头像 :</h4> -->
+                        </div>
+                         <div class="huoma_photo">
+                            <input id="biaoqianma_file" name="img" type="file" style="width:80px;height:80px;position: absolute;top: 10px;opacity: 0;">
+                            <img src="{$data}" alt="" style="height:80px;margin-top: 10px;border-radius: 5px;vertical-align: top;">
+                           <!--  <img src="./home/else/images/hm.png" alt="" style="height:80px;margin-top: 10px;border-radius: 5px;vertical-align: top;">
+ -->                        <div class="huoma_photo_box"> 
+                            </div>
+                        </div>
+                    </div>
+                
+                    <input type="submit" value="修改">
+            </form>
+
+
+                </div>
+            </div>
+
+
+</section>
+{include file="./home/else3/html/aside_my.html" /} 
+ 
+        </div>
+    </div>    
+</section>
+
+{include file="./home/else3/html/footer.html" /}  
+
+
+<!-- 上传头像的css和js -->
+<style>
+.huoma_photo{border-radius:5px;width:80%;height:100px;border:none;background: #F8F8F8;padding:0 20px;margin-bottom: 20px;outline: none;position: relative;overflow-x: auto;overflow-y: hidden;}
+.huoma_photo_box{height:100%;width:90px;position: absolute;top: 0;left: 100px;}
+.huoma_photo_box img{height:80px;width:80px;margin-top: 10px;margin-left: 10px;border-radius: 5px;}
+</style>
+
+
+<script type="text/javascript">
+
+// 上传图片并展示
+document.getElementById('biaoqianma_file').onchange = function() {
+    // alert(点击了);
+    var imgFile = this.files[0];
+    // alert(a);
+    var fr = new FileReader();
+    fr.onload = function() {
+        // alert(fr.result);
+        $('.huoma_photo_box').append('<img src="'+fr.result+'" alt="">');
+        $('.huoma_photo_box').width($('.huoma_photo_box img').length * 90);
+        // document.getElementById('image').getElementsByTagName('img')[0].src = fr.result;
+    };
+    fr.readAsDataURL(imgFile);
+};
+
+</script>
+	

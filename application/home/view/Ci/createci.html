@@ -1,0 +1,175 @@
+{include file="./home/else3/html/header.html" /}
+	
+<!-- 引入代码库样式 -->
+<link href="./home/else3/css/fabu/home.css" type="text/css" rel="stylesheet" />
+<!-- <link href="./home/else3/css/fabu/base.css" type="text/css" rel="stylesheet" /> -->
+<link href="./home/else3/css/layui.css" type="text/css" rel="stylesheet" />
+
+<!-- 引入 select2 插件 -->
+<link href="./home/else3/css/select2.min.css" rel="stylesheet" />
+<script src="./home/else3/js/select2.min.js"></script>
+
+
+<section class="aui-content">
+            <div style="height:20px;"></div>
+            <div class="aui-content-up">
+
+                <form name="contact" method="post" action="home/ci/insert.html"  enctype="multipart/form-data" id="af-form" />
+                    <div class="aui-content-up-form">
+                        <h2>发表 词</h2>
+                    </div>
+
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            词名 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <input type="text" class="aui-form-control-two" name="title" id="title" onBlur="checkna()" value="" placeholder="请输入标题">
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            作者 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <input type="text" name="author" id="author" size="30" value="" class="aui-form-control-two" />
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            词牌名 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                           <select  name="pid" id="area" size="15" class="select2">
+
+                                 <!-- <option value="0">根分类</option> -->
+
+                                 {volist name="alist" id="vo" size="5"}
+
+                                   <option value="{$vo['id']}"> 
+                                    {:str_repeat("__",$vo['count']-2)}
+                                    
+                                  {$vo['name']}
+
+                                   </option>
+
+                                 {/volist}
+
+                            </select><br /> 
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            添加标签 <em>*</em>
+                        </label>
+                       <div class="wrap">
+                          <div class="label-selected">
+                              <a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem" style="float: right; margin: 4px; display: block;line-height: 30px;">展开标签库 </a>
+                              <a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem" style="float: right; margin: 4px; display: none;line-height: 30px;">收起标签库 </a>
+
+                              <!-- 在这获取的值 -->
+                              <input type="hidden" name="biaoqian_id">  
+
+                          </div>
+                          <div class="layui-col-md12" id="labelItem">
+                            <!--标签库-->
+                            <div class="label-item">
+                              <a href="javascript:;" class="replacelable" style="position: absolute;right:1rem;bottom:.75rem;color: #1994dc" onselectstart="return false">换一批</a>
+                              {foreach $biaoqian as $v}
+                                  <li class="biaoqian" data="{$v['id']}"><span>{$v['biaoqian_name']}</span></li>
+                              {/foreach}
+                            </div>
+                          </div>
+                    </div>
+                    </div>
+
+                    
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            内容 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <textarea name="content" id="content" cols="30" class="aui-form-control"></textarea>
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            注释 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <textarea name="zhushi" id="content" cols="30" class="aui-form-control"></textarea>
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            译文 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <textarea name="art_translate" id="content" cols="30" class="aui-form-control"></textarea>
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            赏析 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <textarea name="art_shang" id="content" cols="30" class="aui-form-control"></textarea>
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+                    <div class="aui-form-group clear">
+                        <label class="aui-label-control">
+                            创作背景 <em>*</em>
+                        </label>
+                        <div class="aui-form-input">
+                            <textarea name="art_back" id="content" cols="30" class="aui-form-control"></textarea>
+                            <span class="tips" id="divname"></span>
+                        </div>
+                    </div>
+
+
+                 <div class="aui-btn-default">
+                    <input type="submit" id="button" class="aui-btn aui-btn-account" value="发布" />
+                    <!-- <input type="submit" id="button" class="btn btn-welcome btn-large" value="发布" /> -->  
+                </div>
+            </form>
+            </div>
+        </section>
+
+{include file="./home/else3/html/footer.html" /}   
+
+
+<script type="text/javascript">
+    //页面加载完成后初始化select2控件
+    $(function () {
+         $("#area").select2();
+        // console.log(areaObj.val);
+    });
+</script>
+
+
+<script type="text/javascript"> 
+
+$(function(){
+
+// 要改成表单提交的时候获取
+$("#button").click(function(){
+  // alert(111);
+  console.log($("input[name='biaoqian_id']").val());   // 这样就可以得到标签id，并传递到后台
+})
+
+})
+</script>

@@ -1,0 +1,48 @@
+{include file="./admin/html/header.html" /}
+
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">分类列表</h2>
+       <a href="user_detail.html" class="fr top_rt_btn add_icon">添加新分类</a>
+      </div>
+
+      <form action="admin/cate/add" method="post">
+
+             请选择父级分类：<select name="pid" size="20">
+
+             <option value="0">根分类</option>
+
+             {volist name="alist" id="vo"}
+
+               <option value="{$vo['id']}">
+
+               {:str_repeat("__",$vo['count']-2)}
+
+               {$vo['name']}
+
+               </option>
+
+             {/volist}
+
+             </select><br />
+
+             新的分类名称：<input type="text" name="name" /><br />
+
+             <input type="submit" value="添加分类" />
+
+      </form>
+
+      <aside class="paging">
+       <a>第一页</a>
+       <a>1</a>
+       <a>2</a>
+       <a>3</a>
+       <a>…</a>
+       <a>1004</a>
+       <a>最后一页</a>
+      </aside>
+ </div>
+</section>
+</body>
+</html>

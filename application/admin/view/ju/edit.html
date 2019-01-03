@@ -1,0 +1,32 @@
+{include file="./admin/html/header.html" /}
+
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">名句列表示例</h2>
+       <a href="product_detail.html" class="fr top_rt_btn add_icon">添加文章</a>
+      </div>
+
+  <form method="POST" action="admin/ju/edit.html" enctype="multipart/form-data">
+    <div class="box" style="padding:20px 25px;">
+    <!-- 文章表的id -->
+        <input type="hidden" name="art_id" value="{$id}">
+        <p>名句标题:</p>
+        <input type="text" name="art_title" class="huoma_title"  value="{$data['art_title']}" placeholder="请输入标题">
+        <p>名句作者:</p>
+        <input type="text" name="art_author" class="huoma_title"  value="{$data['art_author']}" placeholder="请输入作者">
+        <p>作者朝代:</p>
+        <input type="text" name="art_chao" class="huoma_title"  value="{$data['art_chao']}" placeholder="请输入朝代">
+        <p>名句内容:</p>
+        <textarea name="art_content"  class="huoma_neirong" placeholder="请填写您要记录的故事">{$data['art_content']}</textarea>
+        <p>我想说的:</p>
+        <textarea name="art_zhu"  class="huoma_neirong" placeholder="请填写您要记录的故事">{$data['art_zhu']}</textarea>
+    </div>
+    <!-- <a href="ewm_information.html" class="next">下一步</a> -->
+    <button class="next">修改</button>
+    </form>
+
+ </div>
+</section>
+</body>
+</html>
